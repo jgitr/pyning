@@ -101,6 +101,7 @@ for i in range(len(dat)):
     dict[word] = dat.count(word)
     continue
 
+hierarchy = [(k, dict[k]) for k in sorted(dict, key=dict.get, reverse=True)]
 
 
 
