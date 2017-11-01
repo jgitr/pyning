@@ -4,7 +4,9 @@ Created on Tue Oct 31 17:57:07 2017
 
 @author: Julian
 """
-
+from collections import Counter
+import numpy as np
+import matplotlib.pyplot as plt
 import requests, re
 
 url = "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
@@ -94,7 +96,37 @@ for i in range(len(dat)):
 
 hierarchy = [(k, dict[k]) for k in sorted(dict, key=dict.get, reverse=True)]
 
+limit = 20
+vals = [x[0] for x in hierarchy[0:limit]]
+idx = [x[1] for x in hierarchy[0:limit]]
 
+plt.bar(idx, vals)
 
+allidx = [x[1] for x in hierarchy]
+
+np.histogram(allidx)
+np.histogram()
+
+word_list = hierarchy
+counts = Counter(word_list)
+
+labels, values = zip(*counts.items())
+
+# sort your values in descending order
+indSort = np.argsort(values)[::-1]
+
+# rearrange your data
+labels = np.array(labels)[indSort]
+values = np.array(values)[indSort]
+
+indexes = np.arange(len(labels))
+
+bar_width = 0.35
+
+plt.bar(indexes, values)
+
+# add labels
+plt.xticks(indexes + bar_width, labels)
+plt.show()
 
 
