@@ -6,7 +6,6 @@ Created on Tue Oct 31 17:57:07 2017
 """
 
 import requests, re
-from collections import Counter
 
 url = "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
 rawhtml = requests.get(url)
