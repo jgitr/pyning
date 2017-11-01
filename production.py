@@ -5,13 +5,6 @@ Created on Tue Oct 31 17:57:07 2017
 @author: Julian
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 31 13:08:35 2017
-
-@author: Julian
-"""
-
 import requests, re
 from collections import Counter
 
@@ -35,8 +28,7 @@ openbool = False # find and delete <...> combinations
 openbackslash = False # find and delete /...> combinations
 
 for i in range(len(text)):
-#for i in text:    
-#for i in range(0,50):
+    
     print("i = ", i)
     
     if text[i] == '<':
