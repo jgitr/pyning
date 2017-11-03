@@ -4,18 +4,15 @@ Created on Tue Oct 31 17:57:07 2017
 
 @author: Julian
 """
-from collections import Counter
-import numpy as np
+
 import matplotlib.pyplot as plt
 import requests, re
 
+
+# Get HTML
 url = "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
 rawhtml = requests.get(url)
-# print(rawhtml.text)
 
-# add spaces between elements
-#wordlist = ''.join(rawhtml.text)
-#print(wordlist)
 
 # make sure these are unique!
 textstart = rawhtml.text.find("Mr") - 1
@@ -24,11 +21,11 @@ textsub = rawhtml.text[textstart:textend]
 
 
 text = list(textsub)
-text2 = text # a copy
 openbool = False # find and delete <...> combinations
 openbackslash = False # find and delete /...> combinations
 
-for i in range(len(text)):
+nText = range(len(text))
+for i in nText:
     
     print("i = ", i)
     
@@ -79,54 +76,40 @@ for i in range(len(text)):
 
 s = "".join(text)   
 
-# \xa0em> and p>\np> and br >\n and thugsem> and em> and \xa0 still left
-#plocation = s.find("/p>")   
-expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)" 
-cleantext = re.sub(expression, '', s)       
+# Some expressions still left
+expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)"
+cleantextCAP = re.sub(expression, '', s)
+cleantext = cleantextCAP.lower()       
 
 
-# Count in dictionary
+# Count and create dictionary
 dat = list(cleantext.split())
-dict = {}
+dict1 = {}
 for i in range(len(dat)):
     print(i)
     word = dat[i]
-    dict[word] = dat.count(word)
+    dict1[word] = dat.count(word)
     continue
 
-hierarchy = [(k, dict[k]) for k in sorted(dict, key=dict.get, reverse=True)]
 
-limit = 20
-vals = [x[0] for x in hierarchy[0:limit]]
-idx = [x[1] for x in hierarchy[0:limit]]
+# Resort in list
+d = dict1
+items = [(v, k) for k, v in d.items()]
+items.sort()
+items.reverse()   
+items = [(k, v) for v, k in items]
 
-plt.bar(idx, vals)
+# Select highest ones to show
+allhighest = items[0:10]
+dd = dict(allhighest)
+dd.keys()
+wanted_keys = dd.keys() # The keys you want
+longdict = dict1
+dictshow = dict((k, longdict[k]) for k in wanted_keys if k in longdict)
 
-allidx = [x[1] for x in hierarchy]
+# Plot
+n = range(len(dictshow))
+plt.bar(n, dictshow.values(), align='center')
+plt.xticks(n, dictshow.keys())
 
-np.histogram(allidx)
-np.histogram()
-
-word_list = hierarchy
-counts = Counter(word_list)
-
-labels, values = zip(*counts.items())
-
-# sort your values in descending order
-indSort = np.argsort(values)[::-1]
-
-# rearrange your data
-labels = np.array(labels)[indSort]
-values = np.array(values)[indSort]
-
-indexes = np.arange(len(labels))
-
-bar_width = 0.35
-
-plt.bar(indexes, values)
-
-# add labels
-plt.xticks(indexes + bar_width, labels)
-plt.show()
-
-
+plt.savefig("plot.png")
