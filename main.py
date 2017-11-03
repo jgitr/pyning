@@ -93,13 +93,9 @@ for i in range(len(dat)):
 
 
 # Resort in list
-d = dict1
-items = [(v, k) for k, v in d.items()]
-items.sort()
-items.reverse()   
-items = [(k, v) for v, k in items]
+# Reconvert to dictionary
 
-def valueSelection(dictionary, length): # length is length of highest value vector
+def valueSelection(dictionary, length): # length is length of highest consecutive value vector
     
     # Test input
     lengthDict = len(dictionary)
@@ -121,12 +117,6 @@ def valueSelection(dictionary, length): # length is length of highest value vect
     
 dictshow = valueSelection(dictionary = dict1, length = 15)
 
-# Select highest ones to show
-#allhighest = items[0:10]
-#dd = dict(allhighest)
-#wanted_keys = dd.keys() # The keys you want
-#longdict = dict1
-#dictshow = dict((k, longdict[k]) for k in wanted_keys if k in longdict)
 
 # Plot
 n = range(len(dictshow))
