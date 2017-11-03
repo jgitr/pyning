@@ -5,10 +5,9 @@ Created on Tue Oct 31 17:57:07 2017
 @author: Julian
 """
 
-#import numpy as np
 import matplotlib.pyplot as plt
 import requests, re
-#import pandas
+
 
 # Get HTML
 url = "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
@@ -25,7 +24,8 @@ text = list(textsub)
 openbool = False # find and delete <...> combinations
 openbackslash = False # find and delete /...> combinations
 
-for i in range(len(text)):
+nText = range(len(text))
+for i in nText:
     
     print("i = ", i)
     
@@ -76,7 +76,7 @@ for i in range(len(text)):
 
 s = "".join(text)   
 
-# \xa0em> and p>\np> and br >\n and thugsem> and em> and \xa0 still left
+# Some expressions still left
 expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)"
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
@@ -112,3 +112,4 @@ n = range(len(dictshow))
 plt.bar(n, dictshow.values(), align='center')
 plt.xticks(n, dictshow.keys())
 
+plt.savefig("plot.png")
