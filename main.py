@@ -99,12 +99,34 @@ items.sort()
 items.reverse()   
 items = [(k, v) for v, k in items]
 
+def valueSelection(dictionary, length): # length is length of highest value vector
+    
+    # Test input
+    lengthDict = len(dictionary)
+    if length > lengthDict:
+        return print("length is longer than dictionary length");
+    else:
+        d = dictionary
+        items = [(v, k) for k, v in d.items()]
+        items.sort()
+        items.reverse()   
+        itemsOut = [(k, v) for v, k in items]
+    
+        highest = itemsOut[0:length]
+        dd = dict(highest)
+        wanted_keys = dd.keys()
+        dictshow = dict((k, d[k]) for k in wanted_keys if k in d)
+
+        return dictshow;
+    
+dictshow = valueSelection(dictionary = dict1, length = 15)
+
 # Select highest ones to show
-allhighest = items[0:10]
-dd = dict(allhighest)
-wanted_keys = dd.keys() # The keys you want
-longdict = dict1
-dictshow = dict((k, longdict[k]) for k in wanted_keys if k in longdict)
+#allhighest = items[0:10]
+#dd = dict(allhighest)
+#wanted_keys = dd.keys() # The keys you want
+#longdict = dict1
+#dictshow = dict((k, longdict[k]) for k in wanted_keys if k in longdict)
 
 # Plot
 n = range(len(dictshow))
