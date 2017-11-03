@@ -102,7 +102,6 @@ items = [(k, v) for v, k in items]
 # Select highest ones to show
 allhighest = items[0:10]
 dd = dict(allhighest)
-dd.keys()
 wanted_keys = dd.keys() # The keys you want
 longdict = dict1
 dictshow = dict((k, longdict[k]) for k in wanted_keys if k in longdict)
