@@ -27,7 +27,7 @@ text = list(textsub)
 # Takes only lists as input
 # Returns list as output
 
-def SearchAndDestroySeq(html, opensign, closesign):
+def SearchAndReplaceSeq(html, opensign, closesign):
     
         openbool = False
         nText = range(len(text))
@@ -63,7 +63,7 @@ def SearchAndDestroySeq(html, opensign, closesign):
         return(text); 
 
                      
-textout = SearchAndDestroySeq(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
+textout = SearchAndReplaceSeq(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
 
 s = "".join(textout)   
 
