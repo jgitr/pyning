@@ -27,9 +27,8 @@ text = list(textsub)
 # Takes only lists as input
 # Returns list as output
 
-def SearchAndDestroy(html, opensign, closesign):
+def SearchAndDestroySeq(html, opensign, closesign):
     
-
         openbool = False
         nText = range(len(text))
         
@@ -57,7 +56,6 @@ def SearchAndDestroy(html, opensign, closesign):
                                 text[i] = ""
                                 continue # switch to next mark, first one is always open
         
-        
             else:
                 print("keeping", text[i])
                 continue #i += 1     
@@ -65,12 +63,13 @@ def SearchAndDestroy(html, opensign, closesign):
         return(text); 
 
                      
-textout = SearchAndDestroy(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
+textout = SearchAndDestroySeq(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
 
 s = "".join(textout)   
 
 
 # Some expressions still left
+# Differ between quotes!
 expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)"
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
