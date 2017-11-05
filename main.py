@@ -21,60 +21,54 @@ textsub = rawhtml.text[textstart:textend]
 
 
 text = list(textsub)
-openbool = False # find and delete <...> combinations
-openbackslash = False # find and delete /...> combinations
 
-nText = range(len(text))
-for i in nText:
+# find and delete <...> combinations
+# find and delete /...> combinations
+# Takes only lists as input
+# Returns list as output
+
+def SearchAndDestroy(html, opensign, closesign):
     
-    print("i = ", i)
-    
-    if text[i] == '<':
-        openbool = True
-        print("deleting ", text[i])  
-        text[i] = "" # delete
-        continue
+
+        openbool = False
+        nText = range(len(text))
         
-        while openbool:         
-                   
-                    if text[i] == '>':
-                        print("deleting ", text[i])  
-                        text[i] = ""
-                        openbool = False
-                        break
-                    
-                    else:
-                        print("deleting ", text[i])  
-                        text[i] = ""
-                        continue # switch to next mark, first one is always open
-
-    if text[i] == '/':
-        openbackslash = True
-        print("deleting ", text[i])  
-        text[i] = "" # delete
-        continue
+        for i in nText:
+            
+            print("i = ", i)
+            
+            if text[i] in opensign:
+                loc = opensign.index('<')
+                openbool = True
+                print("deleting ", text[i])  
+                text[i] = "" # delete
+                continue
+                
+                while openbool:         
+                           
+                            if text[i] == closesign[loc]:
+                                print("deleting ", text[i])  
+                                text[i] = ""
+                                openbool = False
+                                break
+                            
+                            else:
+                                print("deleting ", text[i])  
+                                text[i] = ""
+                                continue # switch to next mark, first one is always open
         
-        while openbackslash:         
-                   
-                    if text[i] == '>':
-                        print("deleting ", text[i])  
-                        text[i] = ""
-                        openbackslash = False
-                        break
-                    
-                    else:
-                        print("deleting ", text[i])  
-                        text[i] = ""
-                        continue # switch to next mark, first one is always open
+        
+            else:
+                print("keeping", text[i])
+                continue #i += 1     
+                
+        return(text); 
 
+                     
+textout = SearchAndDestroy(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
 
-    else:
-        print("keeping", text[i])
-        continue #i += 1     
-             
+s = "".join(textout)   
 
-
-s = "".join(text)   
 
 # Some expressions still left
 expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)"
