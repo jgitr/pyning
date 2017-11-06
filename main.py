@@ -95,7 +95,7 @@ dict2 = dict((k, dict1[k]) for k in filtered_words if k in filtered_words)
 # Resort in list
 # Reconvert to dictionary
 
-def valueSelection(dictionary, length): # length is length of highest consecutive value vector
+def valueSelection(dictionary, length, startindex = 0): # length is length of highest consecutive value vector
     
     # Test input
     lengthDict = len(dictionary)
@@ -108,14 +108,14 @@ def valueSelection(dictionary, length): # length is length of highest consecutiv
         items.reverse()   
         itemsOut = [(k, v) for v, k in items]
     
-        highest = itemsOut[0:length]
+        highest = itemsOut[startindex:startindex + length]
         dd = dict(highest)
         wanted_keys = dd.keys()
         dictshow = dict((k, d[k]) for k in wanted_keys if k in d)
 
         return dictshow;
     
-dictshow = valueSelection(dictionary = dict2, length = 10)
+dictshow = valueSelection(dictionary = dict2, length = 10, startindex = 10)
 
 
 
