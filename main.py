@@ -7,6 +7,7 @@ Created on Tue Oct 31 17:57:07 2017
 
 import matplotlib.pyplot as plt
 import requests, re
+from nltk.corpus import stopwords
 
 
 # Get HTML
@@ -74,7 +75,6 @@ expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
 
-
 # Count and create dictionary
 dat = list(cleantext.split())
 dict1 = {}
@@ -84,6 +84,13 @@ for i in range(len(dat)):
     dict1[word] = dat.count(word)
     continue
 
+
+# Filter Stopwords
+keys = list(dict1)
+filtered_words = [word for word in keys if word not in stopwords.words('english')]
+dict2 = dict((k, dict1[k]) for k in filtered_words if k in filtered_words)
+
+#keys in stopwords.words("english")
 
 # Resort in list
 # Reconvert to dictionary
@@ -108,7 +115,8 @@ def valueSelection(dictionary, length): # length is length of highest consecutiv
 
         return dictshow;
     
-dictshow = valueSelection(dictionary = dict1, length = 15)
+dictshow = valueSelection(dictionary = dict2, length = 10)
+
 
 
 # Plot
