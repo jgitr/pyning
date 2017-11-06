@@ -16,12 +16,13 @@ rawhtml = requests.get(url)
 
 
 # make sure these are unique!
-textstart = rawhtml.text.find("Mr") - 1
-textend = rawhtml.text.find("Foner") 
-textsub = rawhtml.text[textstart:textend]
+#textstart = rawhtml.text.find("Mr") - 1
+#textend = rawhtml.text.find("Foner") 
+#textsub = rawhtml.text[textstart:textend]
+#text = list(textsub)
 
+text = list(rawhtml.text)
 
-text = list(textsub)
 
 # find and delete <...> combinations
 # find and delete /...> combinations
@@ -36,42 +37,48 @@ def SearchAndReplaceSeq(html, opensign, closesign):
         for i in nText:
             
             print("i = ", i)
+            print("outer loop")
             
             if text[i] in opensign:
                 loc = opensign.index('<')
                 openbool = True
                 print("deleting ", text[i])  
                 text[i] = "" # delete
-                continue
                 
                 while openbool:         
-                           
-                            if text[i] == closesign[loc]:
-                                print("deleting ", text[i])  
+                            print("inner loop")
+                            
+                            if text[i] != closesign[loc]:
+                                print(i, "deleting ", text[i])  
                                 text[i] = ""
-                                openbool = False
-                                break
+                                i += 1
                             
                             else:
-                                print("deleting ", text[i])  
+                                print(i, "deleting ", text[i])  
                                 text[i] = ""
-                                continue # switch to next mark, first one is always open
-        
+                                openbool = False
+                                i += 1
+                                                        
+                
+
+                #continue # switch to next mark, first one is always open
+
             else:
                 print("keeping", text[i])
+                print("outer loop down")
                 continue #i += 1     
                 
         return(text); 
 
                      
-textout = SearchAndReplaceSeq(html = text, opensign = ['<', '/'], closesign = ['>', '>'])
+textout = SearchAndReplaceSeq(html = text, opensign = ['<', '/', '{'], closesign = ['>', '>', '}'])
 
 s = "".join(textout)   
 
 
 # Some expressions still left
 # Differ between quotes!
-expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)"
+expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)"
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
 
@@ -115,7 +122,7 @@ def valueSelection(dictionary, length, startindex = 0): # length is length of hi
 
         return dictshow;
     
-dictshow = valueSelection(dictionary = dict2, length = 10, startindex = 10)
+dictshow = valueSelection(dictionary = dict2, length = 10, startindex = 0)
 
 
 
