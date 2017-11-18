@@ -79,7 +79,7 @@ s = "".join(textout)
 
 # Some expressions still left
 # Differ between quotes!
-expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)|(\=)|(\|)|(\-)"
+expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)|(\=)|(\|)|(\-)|(\')"
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
 
@@ -140,4 +140,14 @@ plt.show
 
 
 # Wordcloud
+inputWordcloud = str(dict2.keys())
+# Generate a word cloud image
+wordcloud = WordCloud().generate(inputWordcloud)
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
 
+wordcloud2 = WordCloud(max_font_size=40).generate(inputWordcloud)
+plt.figure()
+plt.imshow(wordcloud2, interpolation="bilinear")
+plt.axis("off")
+plt.show()
