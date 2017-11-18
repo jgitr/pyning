@@ -8,6 +8,7 @@ Created on Tue Oct 31 17:57:07 2017
 import matplotlib.pyplot as plt
 import requests, re
 from nltk.corpus import stopwords
+from wordcloud import WordCloud
 
 
 # Get HTML
@@ -78,7 +79,7 @@ s = "".join(textout)
 
 # Some expressions still left
 # Differ between quotes!
-expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)"
+expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)|(\=)|(\|)|(\-)"
 cleantextCAP = re.sub(expression, '', s)
 cleantext = cleantextCAP.lower()       
 
@@ -124,11 +125,19 @@ def valueSelection(dictionary, length, startindex = 0): # length is length of hi
     
 dictshow = valueSelection(dictionary = dict2, length = 10, startindex = 0)
 
-
-
 # Plot
 n = range(len(dictshow))
 plt.bar(n, dictshow.values(), align='center')
 plt.xticks(n, dictshow.keys())
 
 plt.savefig("plot.png")
+
+
+# Overview
+overview =  valueSelection(dictionary = dict2, length = 1000, startindex = 0)
+plt.bar(range(len(overview.keys())), overview.values(), color = "g")
+plt.show
+
+
+# Wordcloud
+
