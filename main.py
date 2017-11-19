@@ -5,30 +5,37 @@ Created on Tue Oct 31 17:57:07 2017
 @author: Julian
 """
 
+from selenium import webdriver
 import matplotlib.pyplot as plt
-import requests, re
+import re
 from nltk.corpus import stopwords
-from wordcloud import WordCloud
+import os
+#from wordcloud import WordCloud
 
 
-# Get HTML
+#path_direct = os.getcwd()
+#os.chdir(path_direct + '/pyning')
+p = "C:/Users/Julian/pyning"
+os.chdir(p)
+
+
+# Start Selenium
+browser = webdriver.Firefox()
 url = "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
-rawhtml = requests.get(url)
 
-
-# make sure these are unique!
-#textstart = rawhtml.text.find("Mr") - 1
-#textend = rawhtml.text.find("Foner") 
-#textsub = rawhtml.text[textstart:textend]
-#text = list(textsub)
-
-text = list(rawhtml.text)
-
+# Extract text
+browser.get(url)
+id = "doc-tabs-full"
+text = browser.find_element_by_id(id).text
+browser.close()
+browser.stop_client()
 
 # find and delete <...> combinations
 # find and delete /...> combinations
 # Takes only lists as input
 # Returns list as output
+
+"""
 
 def SearchAndReplaceSeq(html, opensign, closesign):
     
@@ -76,11 +83,12 @@ textout = SearchAndReplaceSeq(html = text, opensign = ['<', '/', '{'], closesign
 
 s = "".join(textout)   
 
+"""
 
 # Some expressions still left
 # Differ between quotes!
-expression = "(\\xa0em)|(p>\\np>)|(br >\\n)|(thugsem>)|(em>)|(\\xa0)|[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)|(\=)|(\|)|(\-)|(\')"
-cleantextCAP = re.sub(expression, '', s)
+expression = "[()]|(\“)|(\”)|(\“)|(\”)|(\,|\.|-|\;|\<|\>)|(\\n)|(\\t)|(\=)|(\|)|(\-)|(\')|(\’)"
+cleantextCAP = re.sub(expression, '', text)
 cleantext = cleantextCAP.lower()       
 
 # Count and create dictionary
@@ -123,26 +131,36 @@ def valueSelection(dictionary, length, startindex = 0): # length is length of hi
 
         return dictshow;
     
-dictshow = valueSelection(dictionary = dict2, length = 10, startindex = 0)
+dictshow = valueSelection(dictionary = dict2, length = 7, startindex = 0)
+
+# Save dictionaries for wordcloud
+text_file = open("Output.txt", "w")
+text_file.write(str(cleantext))
+text_file.close()
+
 
 # Plot
 n = range(len(dictshow))
 plt.bar(n, dictshow.values(), align='center')
 plt.xticks(n, dictshow.keys())
-
+plt.title("Most frequent Words")
 plt.savefig("plot.png")
-
 
 # Overview
 overview =  valueSelection(dictionary = dict2, length = 1000, startindex = 0)
-plt.bar(range(len(overview.keys())), overview.values(), color = "g")
-plt.show
+nOverview = range(len(overview.keys()))
+plt.bar(nOverview, overview.values(), color = "g", tick_label = "")
+plt.title("Word Frequency Overview")
+plt.xticks([])
+plt.savefig("overview.png")
 
 
+
+"""
 # Wordcloud
 inputWordcloud = str(dict2.keys())
 # Generate a word cloud image
-wordcloud = WordCloud().generate(inputWordcloud)
+wordcloud = WordCloud(path.join("symbola.ttf")).generate(inputWordcloud)
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
 
@@ -151,3 +169,9 @@ plt.figure()
 plt.imshow(wordcloud2, interpolation="bilinear")
 plt.axis("off")
 plt.show()
+
+dict2.index("would")
+dict2.get("would")
+dict2.keys()
+"""
+
