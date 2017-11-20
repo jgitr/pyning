@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import re
 from nltk.corpus import stopwords
 import os
+import pysentiment as ps
 #from wordcloud import WordCloud
 
 
@@ -153,6 +154,19 @@ plt.bar(nOverview, overview.values(), color = "g", tick_label = "")
 plt.title("Word Frequency Overview")
 plt.xticks([])
 plt.savefig("overview.png")
+
+
+# Sentiment Analysis
+hiv4 = ps.HIV4()
+tokens = hiv4.tokenize(cleantext)
+score = hiv4.get_score(tokens)
+print(score)
+
+# Polarity
+# Formula: (Positive - Negative)/(Positive + Negative)
+
+# Subjectivity
+# Formula: (Positive + Negative)/N
 
 
 
