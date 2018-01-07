@@ -131,3 +131,52 @@ Unable to read VR Path Registry from C:\Users\Julian\AppData\Local\openvr\openvr
 1511100230954	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
 1511100231085	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "4294967301"
 1511100232579	Marionette	DEBUG	Received DOM event "pageshow" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1512946790937	geckodriver	INFO	geckodriver 0.19.1
+1512946790983	geckodriver	INFO	Listening on 127.0.0.1:61850
+1512946799341	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\Julian\\AppData\\Local\\Temp\\rust_mozprofile.fl7FtQ8hg9MR"
+1512946808168	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Julian\AppData\Local\openvr\openvrpaths.vrpath
+[Child 17464, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1512946819453	Marionette	INFO	Listening on port 61873
+1512946820050	Marionette	WARN	TLS certificate errors will be ignored for this session
+1512946820162	Marionette	DEBUG	Register listener.js for window 4294967297
+1512946820584	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1512946823145	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1512946823145	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1512946826980	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1512946827067	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "4294967301"
+1512946829339	Marionette	DEBUG	Received DOM event "pageshow" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1512986254829	geckodriver	INFO	geckodriver 0.19.1
+1512986254848	geckodriver	INFO	Listening on 127.0.0.1:49272
+1512986256904	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\Julian\\AppData\\Local\\Temp\\rust_mozprofile.lvBD3PIHPQLT"
+1512986259216	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Julian\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5644, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5644, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1512986261841	Marionette	INFO	Listening on port 49279
+1512986262241	Marionette	WARN	TLS certificate errors will be ignored for this session
+1512986262308	Marionette	DEBUG	Register listener.js for window 4294967297
+1512986262337	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1512986263797	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1512986263797	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1512986265571	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1512986265616	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "4294967301"
+1512986268795	Marionette	DEBUG	Received DOM event "pageshow" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1515317615411	geckodriver	INFO	geckodriver 0.19.1
+1515317615430	geckodriver	INFO	Listening on 127.0.0.1:51644
+1515317623707	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\Julian\\AppData\\Local\\Temp\\rust_mozprofile.lxs9VJotyVsu"
+1515317638922	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Julian\AppData\Local\openvr\openvrpaths.vrpath
+[Child 15796, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 15796, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1515317661524	Marionette	INFO	Listening on port 51660
+1515317662151	Marionette	WARN	TLS certificate errors will be ignored for this session
+1515317662243	Marionette	DEBUG	Register listener.js for window 4294967297
+1515317662742	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1515317665910	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1515317665911	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+Unable to read VR Path Registry from C:\Users\Julian\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: http://teachingamericanhistory.org/wp-content/themes/tah-main/build/react.js?ver=4.8.4, line 18411: Error: Invariant Violation: _registerComponent(...): Target container is not a DOM element.
+1515317673004	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"
+1515317673073	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "4294967301"
+1515317674939	Marionette	DEBUG	Received DOM event "pageshow" for "http://teachingamericanhistory.org/library/document/what-to-the-slave-is-the-fourth-of-july/"

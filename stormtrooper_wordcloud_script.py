@@ -11,8 +11,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 
-
-
 d = "C:/Users/Julian/pyning"
 
 
@@ -26,14 +24,13 @@ stormtrooper_mask = np.array(Image.open(path.join(d, "stormtrooper_mask.png")))
 stopwords = set(STOPWORDS)
 stopwords.add("said")
 
+# Construct Word Cloud
+# no backgroundcolor and mode = 'RGBA' create transparency
+wc = WordCloud(max_words=1000, mask=stormtrooper_mask,
+stopwords=stopwords, mode = 'RGBA', background_color=None)
 
-wc = WordCloud(background_color="white", max_words=1000, mask=stormtrooper_mask,
-stopwords=stopwords)
-
-
-# generate word cloud
+# Pass Text
 wc.generate(text)
-
 
 # store to file
 wc.to_file(path.join(d, "a_new_hope.png"))
@@ -47,3 +44,4 @@ plt.imshow(stormtrooper_mask, cmap=plt.cm.gray, interpolation='bilinear')
 plt.axis("off")
 plt.show()
 plt.savefig("stormtrooper.png")
+
