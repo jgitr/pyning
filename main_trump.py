@@ -17,6 +17,7 @@ from nltk.corpus import stopwords
 import os
 import pysentiment as ps
 
+
 # Define URL
 url = "http://www.cnn.com/2017/01/20/politics/trump-inaugural-address/"
 
@@ -26,13 +27,29 @@ parsed_html = bs4.BeautifulSoup(raw_html, "lxml") # Choose lxml parser
 # type bs4.element.ResultSet
 text = parsed_html.find_all("div", class_ = "zn-body__paragraph")
 
-# Speech stored in text list
+# Speech stored in list
 textl = [] # init
 for i in text:
     textl.append(i.get_text())
 
-cleantext = str(textl)
+# Convert to string
+cleantextprep = str(textl)
+
+
+
+# Regex cleaning
+expression = "[^a-zA-Z0-9 ]" # keep only letters, numbers and whitespace
+cleantextCAP = re.sub(expression, '', cleantextprep) # apply regex
+cleantext = cleantextCAP.lower() # lower case 
+
+
+# Save dictionaries for wordcloud
+text_file = open("Output.txt", "w")
+text_file.write(str(cleantext))
+text_file.close()
+
     
+
 
 # Count and create dictionary
 dat = list(cleantext.split())
@@ -53,7 +70,6 @@ dict2 = dict((k, dict1[k]) for k in filtered_words if k in filtered_words)
 
 # Resort in list
 # Reconvert to dictionary
-
 def valueSelection(dictionary, length, startindex = 0): # length is length of highest consecutive value vector
     
     # Test input
@@ -76,27 +92,24 @@ def valueSelection(dictionary, length, startindex = 0): # length is length of hi
     
 dictshow = valueSelection(dictionary = dict2, length = 7, startindex = 0)
 
-# Save dictionaries for wordcloud
-text_file = open("Output.txt", "w")
-text_file.write(str(cleantext))
-text_file.close()
 
 
-# Plot
+# Plot most frequent words
 n = range(len(dictshow))
 plt.bar(n, dictshow.values(), align='center')
 plt.xticks(n, dictshow.keys())
 plt.title("Most frequent Words")
-plt.savefig("plot.png")
+plt.savefig("FrequentWords.png", transparent=True)
 
 # Overview
-overview =  valueSelection(dictionary = dict2, length = 1000, startindex = 0)
+overview =  valueSelection(dictionary = dict2, length = 400, startindex = 0)
 nOverview = range(len(overview.keys()))
 plt.bar(nOverview, overview.values(), color = "g", tick_label = "")
 plt.title("Word Frequency Overview")
 plt.xticks([])
-plt.savefig("overview.png")
-
+#plt.savefig("overview.png")
+plt.savefig("overview.png", transparent = True)
+#plt.savefig('overview.png', transparent=True)
 
 # Sentiment Analysis
 hiv4 = ps.HIV4()
