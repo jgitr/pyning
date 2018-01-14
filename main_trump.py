@@ -58,7 +58,8 @@ for i in range(len(dat)):
     print(i)
     word = dat[i]
     dict1[word] = dat.count(word)
-    continue
+
+
 
 
 # Filter Stopwords
@@ -70,7 +71,7 @@ dict2 = dict((k, dict1[k]) for k in filtered_words if k in filtered_words)
 
 # Resort in list
 # Reconvert to dictionary
-def valueSelection(dictionary, length, startindex = 0): # length is length of highest consecutive value vector
+def SequenceSelection(dictionary, length, startindex = 0): # length is length of highest consecutive value vector
     
     # Test input
     lengthDict = len(dictionary)
@@ -90,7 +91,7 @@ def valueSelection(dictionary, length, startindex = 0): # length is length of hi
 
         return dictshow;
     
-dictshow = valueSelection(dictionary = dict2, length = 7, startindex = 0)
+dictshow = SequenceSelection(dictionary = dict2, length = 7, startindex = 0)
 
 
 
@@ -102,7 +103,7 @@ plt.title("Most frequent Words")
 plt.savefig("FrequentWords.png", transparent=True)
 
 # Overview
-overview =  valueSelection(dictionary = dict2, length = 400, startindex = 0)
+overview =  SequenceSelection(dictionary = dict2, length = 400, startindex = 0)
 nOverview = range(len(overview.keys()))
 plt.bar(nOverview, overview.values(), color = "g", tick_label = "")
 plt.title("Word Frequency Overview")
