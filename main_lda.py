@@ -35,7 +35,7 @@ for l in doc_complete:
     doc_out.append(bound)
 
 
-
+doc_complete = doc_out
 
 from nltk.corpus import stopwords 
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -71,8 +71,27 @@ doc_term_matrix = [dictionary.doc2bow(doc) for doc in doc_clean]
 Lda = gensim.models.ldamodel.LdaModel
 
 # Running and Trainign LDA model on the document term matrix.
-ldamodel = Lda(doc_term_matrix, num_topics=12, id2word = dictionary, passes=50)
+ldamodel = Lda(doc_term_matrix, num_topics=2, id2word = dictionary, passes=100)
 
 
-print(ldamodel.print_topics(num_topics=12, num_words=3))
+print(ldamodel.print_topics(num_topics=2, num_words=3))
 
+
+
+# Tests
+
+for e in doc_complete:
+    if 'hand' in e:
+        print(e)
+    
+
+    
+
+lemma = WordNetLemmatizer()
+doc = str(doc_complete)
+stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
+punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
+normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
+
+
+   
