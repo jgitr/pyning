@@ -17,9 +17,7 @@ text = open(path.join(d, 'speeches.txt'), encoding = "utf8").read()
 doc_l = str.split(text, sep = 'SPEECH')
 doc_l.pop()[0]
 
-
 doc_complete = doc_l
-
 
 doc_out = []
 for l in doc_complete:
@@ -31,7 +29,6 @@ for l in doc_complete:
     cleantextCAP = re.sub(expression, '', cleantextprep) # apply regex
     cleantext = cleantextCAP.lower() # lower case 
     bound = ''.join(cleantext)
-    
     doc_out.append(bound)
 
 
@@ -71,10 +68,10 @@ doc_term_matrix = [dictionary.doc2bow(doc) for doc in doc_clean]
 Lda = gensim.models.ldamodel.LdaModel
 
 # Running and Trainign LDA model on the document term matrix.
-ldamodel = Lda(doc_term_matrix, num_topics=2, id2word = dictionary, passes=100)
+ldamodel = Lda(doc_term_matrix, num_topics=3, id2word = dictionary, passes=20)
 
 
-print(ldamodel.print_topics(num_topics=2, num_words=3))
+print(ldamodel.print_topics(num_topics=3, num_words=10))
 
 
 
