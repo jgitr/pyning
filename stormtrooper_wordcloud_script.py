@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 
-d = "C:/Users/Julian/pyning"
+d = os.environ['USERPROFILE'] + '\pyning'
 
 
 # Read the whole text.

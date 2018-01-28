@@ -32,7 +32,7 @@ import pysentiment as ps
 #for i in text:
 #    textl.append(i.get_text())
 
-d = "C:/Users/Julian/pyning"
+d = os.environ['USERPROFILE'] + '\pyning'
 text_file = open(path.join(d, 'speeches.txt'), encoding = "utf8").read()
 
 
