@@ -5,11 +5,11 @@ Created on Sat Jan 20 17:50:55 2018
 @author: Julian
 """
 
-from os import path
+import os
 import re
+from os import path
 
-
-d = "C:/Users/Julian/pyning"
+d = os.environ['USERPROFILE'] + '\pyning'
 
 # Read the whole text.
 text = open(path.join(d, 'speeches.txt'), encoding = "utf8").read()
