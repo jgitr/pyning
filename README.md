@@ -26,4 +26,7 @@ stromtrooper_wordcloud_script.py:
 - load cleaned speeches as saved in the main functions
 - create custom word cloud
 
-
+furthermore:
+- png's present output
+- geckodriver required for selenium
+- dictionary required for sentiment analysis
