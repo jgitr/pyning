@@ -74,21 +74,3 @@ ldamodel = Lda(doc_term_matrix, num_topics=3, id2word = dictionary, passes=20)
 print(ldamodel.print_topics(num_topics=3, num_words=10))
 
 
-
-# Tests
-
-for e in doc_complete:
-    if 'hand' in e:
-        print(e)
-    
-
-    
-
-lemma = WordNetLemmatizer()
-doc = str(doc_complete)
-stop_free = " ".join([i for i in doc.lower().split() if i not in stop])
-punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
-normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
-
-
-   

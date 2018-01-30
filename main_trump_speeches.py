@@ -16,7 +16,7 @@ import re
 from nltk.corpus import stopwords
 import os
 import pysentiment as ps
-
+from os import path
 
 # Define URL
 #url = "http://www.cnn.com/2017/01/20/politics/trump-inaugural-address/"
