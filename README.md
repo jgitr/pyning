@@ -23,7 +23,7 @@ main.py:
 - analysis as in main_trump_speeches.py
 
 stromtrooper_wordcloud_script.py:
-- load cleaned as saved in the main functions
+- load cleaned speeches as saved in the main functions
 - create custom word cloud
 
 
